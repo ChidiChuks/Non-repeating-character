@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="This code is amazing!">
+  <title>Entering characters that deduces the Non-repeated character</title>
+</head>
+
+<body>
+  <div class="container">
+    <form style="color:white" name="deduce">
+      <caption><small>
+          <h2>Non-repeated Quirky Character</h2>
+        </small></caption>
+      <hr />
+      <input id="input" type="text" placeholder="Add character" name="input">
+      <input id="button" type="button" value="Check" onclick="checkOnClick()">
+      <p id="output" class="output"></p>
+    </form>
+  </div>
+  <style>
+    body {
+      margin: 10px;
+      padding: 10px;
+      width: 90%;
+      height: auto;
+      text-align: center;
+      background-color: #1a001a;
+    }
+
+    .container {
+      margin: 20px;
+      padding: 25px;
+      font-family: Calibri;
+      width: auto;
+      height: 100%;
+      font-size: 19px;
+      background-position: center;
+      text-align: center;
+      background-color: #660066;
+
+    }
+  </style>
+  <script>
+    document.getElementById("button").onclick = function () {
+      checkOnClick();
+    }
+    function checkOnClick() {
+      //creating a variable to get input utility from it's identity
+      const inputUtility = document.getElementById("input").value;
+      //conversion of input utility to an array of strings
+      const arrayOfCharacters = inputUtility.split("");
+      //This functionality compares and filters array of strings
+      //that is passed
+      const firstQuirkyCharacter = arrayOfCharacters.filter(comparer(arrayOfCharacters))[0];
+      //To show result on screen
+      firstQuirkyCharacter ? document.getElementById("output").innerHTML = `Output is: ${firstQuirkyCharacter}.` : document.getElementById("output").innerHTML = `There is no quirky character`;
+    }
+
+    function comparer(otherArray) {
+      return function (current) {
+        return (
+          otherArray.filter(function (other) {
+            return other === current
+          }).length === 1)
+      }
+    }
+  </script>
+</body>
